@@ -86,12 +86,13 @@
 - **Pruebas:** PDF y DOCX generados dentro del test; extensión no permitida; archivo corrupto; vacío; demasiado largo; > 5 MB.
 - **Commit:** `feat: extracción de texto de CV en PDF, DOCX y texto pegado`
 
-### [ ] T09 · Esquemas Pydantic
+### [x] T09 · Esquemas Pydantic
 - **Qué:** `services/esquemas.py` con `PerfilCV` y subesquemas, `VacanteEstructurada`,
   `EvaluacionVacante`, `Brecha`, `PasoAprendizaje` y `Recomendaciones` (límites del SPEC: 3–7 brechas,
   2–4 pasos y 3–6 sugerencias). Incluye una función que genera el JSON Schema para las herramientas.
 - **Terminado cuando:** los esquemas aceptan datos válidos y rechazan los inválidos con mensajes legibles.
 - **Pruebas:** casos válidos e inválidos (nivel fuera de rango, puntaje > 100, listas fuera de límite).
+- **Nota de implementación:** las brechas se validan con mínimo 1 (el *prompt* pide 3–7) para no obligar al modelo a inventar brechas en perfiles muy completos. Los pasos del plan son una lista de textos dentro de `Brecha`, sin un esquema `PasoAprendizaje` aparte.
 - **Commit:** `feat: esquemas Pydantic para perfil, vacantes y recomendaciones`
 
 ---
