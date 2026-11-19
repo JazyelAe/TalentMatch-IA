@@ -70,7 +70,7 @@
 - **Pruebas:** tabla parametrizada de casos (sinónimos, acentos, símbolos, vacíos).
 - **Commit:** `feat: normalización de habilidades con diccionario de sinónimos`
 
-### [ ] T07 · Puntaje determinista
+### [x] T07 · Puntaje determinista
 - **Qué:** `services/matching.py`: `calcular_match_determinista(habilidades_perfil, vacante)` →
   `ResultadoDeterminista(puntaje, coincidentes, faltantes_requeridas, faltantes_deseables)`, con la
   fórmula 80/20 del SPEC §4.5 y `combinar_puntajes(det, llm, peso)`.
