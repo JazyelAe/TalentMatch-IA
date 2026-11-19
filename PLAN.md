@@ -117,7 +117,7 @@
 - **Pruebas:** cliente simulado (`unittest.mock`): respuesta con `tool_use`, `end_turn`, `refusal`, 401, 429, 5xx, error de conexión, JSON inválido.
 - **Commit:** `feat: proveedor Anthropic con traducción de herramientas y errores`
 
-### [ ] T12 · ProveedorDemo: perfil heurístico
+### [x] T12 · ProveedorDemo: perfil heurístico
 - **Qué:** `services/catalogo_habilidades.py` (habilidades técnicas y blandas conocidas) y
   `ProveedorDemo.generar_estructurado` para `PerfilCV`: detecta habilidades, idiomas y nivel por reglas.
 - **Terminado cuando:** un CV de ejemplo produce un perfil razonable y válido según `PerfilCV`, sin red.
