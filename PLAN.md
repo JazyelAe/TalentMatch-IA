@@ -207,7 +207,7 @@
 - **Pruebas:** 200 con datos; 404 si no existe; aparecen el aviso de parcial y la sección externa cuando corresponde.
 - **Commit:** `feat: página de resultados con top 5, brechas y sugerencias`
 
-### [ ] T22 · Historial
+### [x] T22 · Historial
 - **Qué:** `/historial/` paginado (10 por página): fecha, nivel, mejor vacante y su puntaje, con enlace a los resultados. Enlace en la navbar.
 - **Terminado cuando:** la lista sale ordenada del más reciente al más antiguo y la paginación funciona.
 - **Pruebas:** orden; paginación (11 análisis → 2 páginas); estado vacío.

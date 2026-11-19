@@ -3,10 +3,11 @@
 import logging
 
 from django.conf import settings
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
 from analisis.forms import AnalisisForm
-from analisis.models import Analisis
+from analisis.models import Analisis, ResultadoMatch
 from services.extraccion import ErrorExtraccion, extraer_texto
 from services.llm import ErrorLLM
 from services.orquestador import CatalogoVacioError, analizar_cv
@@ -73,3 +74,20 @@ def resultado(request, pk: int):
     """Resultados de un análisis guardado."""
     analisis = get_object_or_404(Analisis, pk=pk)
     return render(request, "analisis/resultado.html", {"analisis": analisis})
+
+
+ANALISIS_POR_PAGINA = 10
+
+
+def _mejor_resultado(analisis: Analisis) -> ResultadoMatch | None:
+    """Usa los resultados ya precargados (prefetch) para no hacer una consulta por fila."""
+    del_catalogo = [r for r in analisis.resultados.all() if not r.es_externa]
+    return min(del_catalogo, key=lambda r: r.posicion, default=None)
+
+
+def historial(request):
+    """Lista paginada de análisis, del más reciente al más antiguo."""
+    consulta = Analisis.objects.prefetch_related("resultados")
+    pagina = Paginator(consulta, ANALISIS_POR_PAGINA).get_page(request.GET.get("pagina"))
+    filas = [{"analisis": a, "mejor": _mejor_resultado(a)} for a in pagina]
+    return render(request, "analisis/historial.html", {"pagina": pagina, "filas": filas})
