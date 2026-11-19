@@ -124,7 +124,7 @@
 - **Pruebas:** CV jr con Python/Django → detecta esas habilidades y nivel `jr`; CV sin años → `trainee`; el resultado valida con Pydantic.
 - **Commit:** `feat: modo demo con extracción heurística de perfil`
 
-### [ ] T13 · Servicio de perfil
+### [x] T13 · Servicio de perfil
 - **Qué:** `services/perfil.py`: `extraer_perfil(texto, proveedor)` con el *prompt* de sistema
   (el CV va delimitado como dato, ver R9) y **1 reintento** si el JSON es inválido.
 - **Terminado cuando:** devuelve un `PerfilCV`; tras dos respuestas inválidas lanza `RespuestaInvalidaError`.
