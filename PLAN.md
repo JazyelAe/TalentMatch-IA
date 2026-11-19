@@ -63,7 +63,7 @@
 
 ## Bloque C — Lógica determinista (sin LLM)
 
-### [ ] T06 · Normalización de habilidades
+### [x] T06 · Normalización de habilidades
 - **Qué:** `services/habilidades.py`: `normalizar(habilidad)` (minúsculas, sin acentos ni puntuación
   sobrante) + diccionario de sinónimos; `normalizar_lista()` sin duplicados.
 - **Terminado cuando:** `"React.js"`, `"react"` y `"ReactJS"` dan lo mismo; `"C#"` y `"C++"` **no** se rompen.
