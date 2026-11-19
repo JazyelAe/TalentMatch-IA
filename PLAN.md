@@ -52,7 +52,7 @@
 - **Pruebas:** crear vacante; `__str__`; validación de que las habilidades sean una lista de strings; el admin carga (200) para un superusuario.
 - **Commit:** `feat: modelo Vacante con administración en el admin de Django`
 
-### [ ] T05 · Comando `cargar_vacantes_ejemplo`
+### [x] T05 · Comando `cargar_vacantes_ejemplo`
 - **Qué:** `vacantes/data/vacantes_ejemplo.json` con 20 vacantes de TI de empresas inventadas
   (mezcla de niveles trainee/jr/mid, modalidades y stacks) y el comando que las carga con `update_or_create`.
 - **Terminado cuando:** correrlo dos veces deja exactamente 20 vacantes; todas dicen "(ficticia)".

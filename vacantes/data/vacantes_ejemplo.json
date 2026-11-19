@@ -1,0 +1,202 @@
+[
+  {
+    "titulo": "Desarrollador Backend Python Jr",
+    "empresa": "Nubeterna Labs",
+    "ubicacion": "Guadalajara, Jal.",
+    "modalidad": "hibrido",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Python", "Django", "SQL", "Git", "APIs REST"],
+    "habilidades_deseables": ["Django REST Framework", "Docker", "PostgreSQL"],
+    "descripcion": "Desarrollarás y mantendrás APIs para una plataforma de logística. Trabajarás con un equipo pequeño, revisiones de código y despliegues semanales."
+  },
+  {
+    "titulo": "Desarrollador Full Stack Jr",
+    "empresa": "Cactus Digital",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "remoto",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Python", "Django", "JavaScript", "HTML", "CSS"],
+    "habilidades_deseables": ["Tailwind CSS", "React", "PostgreSQL"],
+    "descripcion": "Construirás funcionalidades de punta a punta para un sistema de reservas: desde el modelo de datos hasta la interfaz."
+  },
+  {
+    "titulo": "Trainee de Desarrollo Web",
+    "empresa": "Pixelia Studio",
+    "ubicacion": "Puebla, Pue.",
+    "modalidad": "presencial",
+    "nivel": "trainee",
+    "habilidades_requeridas": ["HTML", "CSS", "JavaScript"],
+    "habilidades_deseables": ["Git", "Tailwind CSS", "Figma"],
+    "descripcion": "Programa de formación de 6 meses para maquetar sitios responsivos con acompañamiento de un mentor."
+  },
+  {
+    "titulo": "Desarrollador Frontend React Jr",
+    "empresa": "Orbita Apps",
+    "ubicacion": "Monterrey, N.L.",
+    "modalidad": "hibrido",
+    "nivel": "jr",
+    "habilidades_requeridas": ["JavaScript", "React", "HTML", "CSS", "Git"],
+    "habilidades_deseables": ["TypeScript", "Tailwind CSS", "Jest"],
+    "descripcion": "Crearás componentes reutilizables para una aplicación de finanzas personales y colaborarás con diseño de producto."
+  },
+  {
+    "titulo": "Analista de Datos Trainee",
+    "empresa": "Datanopal",
+    "ubicacion": "Querétaro, Qro.",
+    "modalidad": "hibrido",
+    "nivel": "trainee",
+    "habilidades_requeridas": ["SQL", "Excel", "Python"],
+    "habilidades_deseables": ["Pandas", "Power BI", "Estadística"],
+    "descripcion": "Apoyarás en la limpieza de datos y la creación de reportes semanales para el área comercial."
+  },
+  {
+    "titulo": "Ingeniero de Datos Mid",
+    "empresa": "Datanopal",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "remoto",
+    "nivel": "mid",
+    "habilidades_requeridas": ["Python", "SQL", "Airflow", "AWS", "Pandas"],
+    "habilidades_deseables": ["Spark", "Docker", "dbt"],
+    "descripcion": "Diseñarás y mantendrás pipelines de datos que alimentan tableros de negocio y modelos predictivos."
+  },
+  {
+    "titulo": "QA Tester Jr",
+    "empresa": "Calidad Viva",
+    "ubicacion": "León, Gto.",
+    "modalidad": "remoto",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Pruebas manuales", "Pytest", "Git", "SQL"],
+    "habilidades_deseables": ["Selenium", "Postman", "Jira"],
+    "descripcion": "Diseñarás casos de prueba y automatizarás pruebas de regresión para una aplicación web de comercio electrónico."
+  },
+  {
+    "titulo": "Desarrollador Backend Node.js Jr",
+    "empresa": "Volcán Software",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "hibrido",
+    "nivel": "jr",
+    "habilidades_requeridas": ["JavaScript", "Node.js", "Express", "MongoDB", "Git"],
+    "habilidades_deseables": ["TypeScript", "Docker", "APIs REST"],
+    "descripcion": "Desarrollarás microservicios para una plataforma de pagos y participarás en guardias de soporte rotativas."
+  },
+  {
+    "titulo": "DevOps Jr",
+    "empresa": "Volcán Software",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "remoto",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Linux", "Docker", "Git", "CI/CD"],
+    "habilidades_deseables": ["AWS", "Terraform", "Kubernetes", "Bash"],
+    "descripcion": "Automatizarás despliegues y mejorarás la observabilidad de servicios en la nube junto al equipo de plataforma."
+  },
+  {
+    "titulo": "Soporte Técnico de Aplicaciones Trainee",
+    "empresa": "Ayudante Cloud",
+    "ubicacion": "Mérida, Yuc.",
+    "modalidad": "presencial",
+    "nivel": "trainee",
+    "habilidades_requeridas": ["SQL", "Comunicación", "Resolución de problemas"],
+    "habilidades_deseables": ["Linux", "Jira", "Inglés"],
+    "descripcion": "Atenderás incidencias de clientes, documentarás soluciones y escalarás problemas al equipo de desarrollo."
+  },
+  {
+    "titulo": "Desarrollador Python Mid",
+    "empresa": "Nubeterna Labs",
+    "ubicacion": "Guadalajara, Jal.",
+    "modalidad": "remoto",
+    "nivel": "mid",
+    "habilidades_requeridas": ["Python", "Django", "PostgreSQL", "Docker", "APIs REST", "Pytest"],
+    "habilidades_deseables": ["Celery", "Redis", "AWS"],
+    "descripcion": "Liderarás el desarrollo de nuevos módulos, harás revisiones de código y acompañarás a desarrolladores junior."
+  },
+  {
+    "titulo": "Desarrollador Móvil Flutter Jr",
+    "empresa": "Colibrí Mobile",
+    "ubicacion": "Tijuana, B.C.",
+    "modalidad": "hibrido",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Dart", "Flutter", "Git", "APIs REST"],
+    "habilidades_deseables": ["Firebase", "Kotlin", "Swift"],
+    "descripcion": "Desarrollarás una app de bienestar para Android e iOS a partir de diseños en Figma."
+  },
+  {
+    "titulo": "Desarrollador Java Jr",
+    "empresa": "Grupo Tlaloc Tech",
+    "ubicacion": "Monterrey, N.L.",
+    "modalidad": "presencial",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Java", "Spring Boot", "SQL", "Git"],
+    "habilidades_deseables": ["Maven", "JUnit", "Docker"],
+    "descripcion": "Mantendrás servicios internos de facturación y participarás en su migración a microservicios."
+  },
+  {
+    "titulo": "Científico de Datos Jr",
+    "empresa": "Mente Analítica",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "hibrido",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Python", "Pandas", "Scikit-learn", "SQL", "Estadística"],
+    "habilidades_deseables": ["Machine Learning", "Jupyter", "Git"],
+    "descripcion": "Construirás modelos de predicción de demanda y comunicarás resultados al equipo de negocio."
+  },
+  {
+    "titulo": "Desarrollador de Integraciones con IA Jr",
+    "empresa": "Mente Analítica",
+    "ubicacion": "Guadalajara, Jal.",
+    "modalidad": "remoto",
+    "nivel": "jr",
+    "habilidades_requeridas": ["Python", "APIs REST", "Git", "LLMs"],
+    "habilidades_deseables": ["Django", "Docker", "Prompt engineering"],
+    "descripcion": "Integrarás modelos de lenguaje en productos internos: clasificación de tickets, resúmenes y asistentes."
+  },
+  {
+    "titulo": "Desarrollador .NET Mid",
+    "empresa": "Grupo Tlaloc Tech",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "hibrido",
+    "nivel": "mid",
+    "habilidades_requeridas": ["C#", ".NET", "SQL Server", "APIs REST", "Git"],
+    "habilidades_deseables": ["Azure", "Docker", "Angular"],
+    "descripcion": "Diseñarás y mantendrás servicios críticos para el área de cobranza con altos estándares de calidad."
+  },
+  {
+    "titulo": "Trainee de Ciberseguridad",
+    "empresa": "Escudo Norte",
+    "ubicacion": "Chihuahua, Chih.",
+    "modalidad": "presencial",
+    "nivel": "trainee",
+    "habilidades_requeridas": ["Linux", "Redes", "Bash"],
+    "habilidades_deseables": ["Python", "Wireshark", "Inglés"],
+    "descripcion": "Apoyarás en el monitoreo de alertas de seguridad y en la documentación de incidentes."
+  },
+  {
+    "titulo": "Desarrollador PHP Laravel Jr",
+    "empresa": "Pixelia Studio",
+    "ubicacion": "Puebla, Pue.",
+    "modalidad": "remoto",
+    "nivel": "jr",
+    "habilidades_requeridas": ["PHP", "Laravel", "MySQL", "Git"],
+    "habilidades_deseables": ["Vue.js", "Docker", "Tailwind CSS"],
+    "descripcion": "Desarrollarás sistemas a la medida para clientes de comercio local y darás mantenimiento a proyectos existentes."
+  },
+  {
+    "titulo": "Desarrollador Frontend Mid",
+    "empresa": "Orbita Apps",
+    "ubicacion": "Monterrey, N.L.",
+    "modalidad": "remoto",
+    "nivel": "mid",
+    "habilidades_requeridas": ["TypeScript", "React", "Next.js", "Testing", "Git"],
+    "habilidades_deseables": ["GraphQL", "Tailwind CSS", "Accesibilidad web"],
+    "descripcion": "Definirás la arquitectura del frontend y mejorarás el rendimiento de una aplicación con miles de usuarios diarios."
+  },
+  {
+    "titulo": "Trainee de Desarrollo Python",
+    "empresa": "Cactus Digital",
+    "ubicacion": "Ciudad de México",
+    "modalidad": "hibrido",
+    "nivel": "trainee",
+    "habilidades_requeridas": ["Python", "Git", "Lógica de programación"],
+    "habilidades_deseables": ["Django", "SQL", "HTML"],
+    "descripcion": "Programa de formación de 4 meses en desarrollo web con Python, con proyectos reales y mentoría."
+  }
+]
