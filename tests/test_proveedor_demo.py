@@ -65,13 +65,13 @@ class TestHeuristicas:
     def test_estimar_anios(self, texto, anios):
         assert estimar_anios(texto) == anios
 
-    @pytest.mark.parametrize(
-        "texto, anios, nivel",
-        [("", 0, "trainee"), ("", 0.5, "trainee"), ("Practicante de desarrollo", 1.5, "trainee"),
-         ("", 1, "jr"), ("", 2.5, "jr"), ("", 3, "mid"), ("", 8, "mid")],
-    )
-    def test_estimar_nivel(self, texto, anios, nivel):
-        assert estimar_nivel(texto, anios) == nivel
+    @pytest.mark.parametrize("anios, nivel", [(0, "trainee"), (0.5, "trainee"), (1, "jr"), (2.5, "jr"), (3, "mid"), (8, "mid")])
+    def test_estimar_nivel(self, anios, nivel):
+        assert estimar_nivel(anios) == nivel
+
+    def test_un_puesto_anterior_de_practicante_no_baja_el_nivel(self):
+        cv = "Nombre\nDesarrolladora backend, 1.5 años de experiencia.\nAntes fui practicante de desarrollo web."
+        assert perfil_heuristico(cv).nivel_estimado == "jr"
 
 
 class TestPerfilHeuristico:

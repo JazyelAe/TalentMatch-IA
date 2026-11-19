@@ -112,8 +112,10 @@ def recomendaciones_de_respaldo(
     if not top:
         raise ValueError("No hay vacantes activas en el catálogo para recomendar.")
 
-    faltantes = [r.faltantes_requeridas for _, r in top]
-    palabras = palabras_clave_ats([r.faltantes for _, r in top])
+    # Requeridas y deseables cuentan para las brechas: un perfil que ya cubre lo obligatorio
+    # igual puede crecer con lo deseable.
+    faltantes = [r.faltantes for _, r in top]
+    palabras = palabras_clave_ats(faltantes)
     return Recomendaciones(
         top_vacantes=[
             EvaluacionVacante(

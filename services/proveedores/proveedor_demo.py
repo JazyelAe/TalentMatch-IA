@@ -32,7 +32,6 @@ from services.prompts import extraer_delimitado
 MAX_MATCHES_DEMO = 8
 ORDEN_NIVELES = {"trainee": 0, "jr": 1, "mid": 2}
 
-PALABRAS_TRAINEE = ("trainee", "practicante", "becario", "pasante", "estudiante", "residencia profesional")
 PALABRAS_EXPERIENCIA = ("desarrollador", "desarrolladora", "developer", "ingeniero", "ingeniera", "analista", "programador", "programadora", "practicante")
 PALABRAS_EDUCACION = ("ingenieria", "licenciatura", "carrera", "universidad", "bootcamp", "maestria", "tecnico en", "certificacion")
 NIVELES_IDIOMA = ("nativo", "nativa", "a1", "a2", "b1", "b2", "c1", "c2", "basico", "intermedio", "avanzado", "fluido")
@@ -93,10 +92,12 @@ def estimar_anios(texto: str) -> float:
     return max(valores, default=0.0)
 
 
-def estimar_nivel(texto: str, anios: float) -> str:
-    """Reglas: <1 año o palabras de formación → trainee; <3 años → jr; resto → mid."""
-    comparable = texto_comparable(texto)
-    if anios < 1 or (anios < 2 and any(p in comparable for p in PALABRAS_TRAINEE)):
+def estimar_nivel(anios: float) -> str:
+    """Reglas: menos de 1 año → trainee; menos de 3 → jr; resto → mid.
+
+    No se usan palabras como "practicante": un CV puede mencionarlas como puesto ANTERIOR.
+    """
+    if anios < 1:
         return "trainee"
     if anios < 3:
         return "jr"
@@ -138,7 +139,7 @@ def perfil_heuristico(texto_cv: str) -> PerfilCV:
     """Construye un PerfilCV válido a partir del texto, sin IA."""
     tecnicas = detectar_habilidades_tecnicas(texto_cv)
     anios = estimar_anios(texto_cv)
-    nivel = estimar_nivel(texto_cv, anios)
+    nivel = estimar_nivel(anios)
     principales = ", ".join(tecnicas[:5]) or "sin habilidades técnicas reconocidas"
 
     return PerfilCV(
@@ -257,7 +258,7 @@ def _recomendaciones_demo(perfil: PerfilCV, matches: list[dict], niveles: dict[i
             for m in top
         ],
         vacante_externa=externa,
-        brechas=construir_brechas((m["faltantes_requeridas"] for m in top), perfil),
+        brechas=construir_brechas((m["faltantes_requeridas"] + m["faltantes_deseables"] for m in top), perfil),
         sugerencias_cv=sugerencias_cv(perfil, palabras),
         palabras_clave_ats=palabras,
     )

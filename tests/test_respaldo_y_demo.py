@@ -91,3 +91,10 @@ class TestAgenteDemo:
         match = calcular_match_determinista(perfil.habilidades_tecnicas, externa.habilidades_requeridas)
         resultado = ejecutar_agente(perfil, ProveedorDemo(), vacante_externa=externa, match_externo=match)
         assert "FastAPI" in resultado.recomendaciones.vacante_externa.explicacion
+
+
+def test_las_brechas_del_demo_incluyen_habilidades_deseables(catalogo):
+    """Un perfil que cubre lo requerido igual recibe varias brechas a partir de lo deseable."""
+    perfil = extraer_perfil(TEXTO_CV + "\nTambién uso FastAPI, Pytest y APIs REST.", ProveedorDemo())
+    resultado = ejecutar_agente(perfil, ProveedorDemo())
+    assert len(resultado.recomendaciones.brechas) >= 3
