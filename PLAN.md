@@ -108,7 +108,7 @@
 - **Pruebas:** las combinaciones de variables de entorno → proveedor correcto; un proveedor desconocido produce un error claro.
 - **Commit:** `feat: capa intercambiable de proveedor de LLM`
 
-### [ ] T11 · ProveedorAnthropic
+### [x] T11 · ProveedorAnthropic
 - **Qué:** `services/proveedores/anthropic.py`: `generar_estructurado` (salida estructurada validada con
   Pydantic) y `chat_con_herramientas` (traduce de y hacia `RespuestaLLM`, `tool_choice=auto`,
   `strict: true`). Mapea las excepciones del SDK a nuestros errores y revisa `stop_reason`
