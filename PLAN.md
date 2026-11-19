@@ -179,7 +179,7 @@
 - **Pruebas:** creación; orden por posición; borrar `Vacante` → el resultado conserva el título.
 - **Commit:** `feat: modelos de análisis y resultados de match`
 
-### [ ] T19 · Orquestador
+### [x] T19 · Orquestador
 - **Qué:** `services/orquestador.py`: `analizar_cv(texto, origen, texto_vacante=None)` →
   perfil → agente (o respaldo) → `puntaje_final` calculado por el código → guarda todo en una
   transacción → devuelve el `Analisis`.
