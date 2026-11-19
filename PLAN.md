@@ -153,7 +153,7 @@
 - **Pruebas:** ciclo feliz (3 iteraciones); límite alcanzado; entrega inválida → corrección → válida; varias llamadas en un mismo turno; herramienta con error.
 - **Commit:** `feat: agente con ciclo de herramientas y límite de iteraciones`
 
-### [ ] T16 · Respaldo determinista y agente en modo demo
+### [x] T16 · Respaldo determinista y agente en modo demo
 - **Qué:** `services/respaldo.py` (top 5 por puntaje determinista y brechas por frecuencia, marcado
   como parcial). `ProveedorDemo.chat_con_herramientas` con su guion: buscar → `calcular_match` × N →
   entregar, con puntaje LLM simulado.
