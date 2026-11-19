@@ -26,7 +26,7 @@
 - **Pruebas:** `test_settings.py`: hay `SECRET_KEY` por defecto solo en DEBUG; `LLM_MODELO` por defecto = `claude-haiku-5-5`.
 - **Commit:** `chore: esqueleto de Django con configuración por variables de entorno`
 
-### [ ] T02 · Tailwind y plantilla base
+### [x] T02 · Tailwind y plantilla base
 - **Qué:** `package.json` con `tailwindcss` + `@tailwindcss/cli` y scripts `css:build`/`css:watch`;
   `static/src/input.css`; `templates/base.html` (navbar, contenedor responsivo y pie); página de
   inicio `/`; `static/css/app.css` compilado y versionado.

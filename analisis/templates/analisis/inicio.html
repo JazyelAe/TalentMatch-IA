@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}TalentMatch IA · Encuentra tu siguiente vacante de TI{% endblock %}
+
+{% block contenido %}
+<section class="text-center">
+  <p class="mb-3 inline-block rounded-full bg-marca-100 px-3 py-1 text-xs font-semibold tracking-wide text-marca-700 uppercase">
+    Agente de IA para tu búsqueda de empleo
+  </p>
+  <h1 class="mx-auto max-w-3xl text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+    Descubre a qué vacantes de TI postularte
+  </h1>
+  <p class="mx-auto mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
+    Sube tu CV y TalentMatch IA lo compara con vacantes de TI: te dice dónde encajas mejor,
+    qué habilidades te faltan y cómo mejorar tu CV para pasar los filtros ATS.
+  </p>
+  <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+    {# El botón "Analizar mi CV" se agrega en T20, cuando exista la página /analizar/. #}
+    <a href="#como-funciona" class="w-full rounded-lg bg-marca-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-marca-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-600 sm:w-auto">
+      Ver cómo funciona
+    </a>
+  </div>
+</section>
+
+<section id="como-funciona" class="mt-16 sm:mt-24">
+  <h2 class="text-center text-xl font-semibold text-slate-900 sm:text-2xl">¿Cómo funciona?</h2>
+  <ol class="mt-8 grid gap-4 sm:grid-cols-3">
+    {% for paso in pasos %}
+    <li class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <span class="grid size-9 place-items-center rounded-full bg-marca-50 font-bold text-marca-700">{{ forloop.counter }}</span>
+      <h3 class="mt-4 font-semibold text-slate-900">{{ paso.titulo }}</h3>
+      <p class="mt-2 text-sm text-slate-600">{{ paso.descripcion }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}
