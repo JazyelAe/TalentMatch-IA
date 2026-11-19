@@ -99,7 +99,7 @@
 
 ## Bloque D — Capa de LLM
 
-### [ ] T10 · Interfaz ProveedorLLM y fábrica
+### [x] T10 · Interfaz ProveedorLLM y fábrica
 - **Qué:** `services/llm.py`: `ProveedorLLM` (ABC), los tipos neutrales `Herramienta`,
   `LlamadaHerramienta` y `RespuestaLLM`, la jerarquía de errores (`ErrorLLM` → `ApiKeyInvalidaError`,
   `LimiteApiError`, `ConexionLLMError`, `RechazoModeloError`, `RespuestaInvalidaError`) y
