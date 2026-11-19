@@ -236,7 +236,7 @@
 
 ## FASE 4 — README
 
-### [ ] T25 · README final
+### [x] T25 · README final
 - **Qué:** README en español (problema, capturas, diagrama, cómo funciona el agente, pasos para
   correrlo en local, modo demo, pruebas, decisiones técnicas y siguientes pasos) + capturas en `docs/img/`.
 - **Terminado cuando:** alguien sin contexto puede clonar y correr el proyecto en modo demo con ≤ 6 comandos.
