@@ -224,11 +224,12 @@
 
 ## Bloque H — Cierre de calidad
 
-### [ ] T24 · Prueba de punta a punta en demo y cobertura
+### [x] T24 · Prueba de punta a punta en demo y cobertura
 - **Qué:** test e2e: cargar vacantes → subir un CV de ejemplo → ver resultados → verlo en el historial,
   todo en modo demo. Medir la cobertura con `pytest-cov` y cubrir los huecos hasta ≥ 80 % en `services/`.
 - **Terminado cuando:** la suite completa está en verde y la cobertura de `services/` es ≥ 80 %.
 - **Pruebas:** el propio test e2e + el reporte de cobertura.
+- **Resultado:** 413 pruebas en verde; cobertura de 98 % en total (todos los módulos de `services/` ≥ 97 %).
 - **Commit:** `test: prueba de punta a punta en modo demo y cobertura de servicios`
 
 ---
