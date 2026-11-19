@@ -1,0 +1,36 @@
+# --- Secretos: NUNCA subir al repo ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Django ---
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+/media/
+*.log
+
+# --- Pruebas y cobertura ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Tailwind / Node (si se usa) ---
+node_modules/
+
+# --- Editores y sistema operativo ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
