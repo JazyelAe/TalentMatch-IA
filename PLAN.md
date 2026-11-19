@@ -34,7 +34,7 @@
 - **Pruebas:** `GET /` responde 200, usa `base.html` y enlaza `css/app.css`.
 - **Commit:** `feat: plantilla base con Tailwind CSS y página de inicio`
 
-### [ ] T03 · Bloqueo de red en pruebas y ProveedorFalso (infraestructura de tests)
+### [x] T03 · Bloqueo de red en pruebas y ProveedorFalso (infraestructura de tests)
 - **Qué:** `tests/conftest.py` con una *fixture* `autouse` que vacía `ANTHROPIC_API_KEY` y bloquea
   `socket.connect` hacia fuera. Esqueleto de `ProveedorFalso` (respuestas programadas) para usarlo más adelante.
 - **Terminado cuando:** cualquier intento de conexión a internet dentro de un test falla con un error explícito.
