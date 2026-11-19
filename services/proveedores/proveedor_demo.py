@@ -117,11 +117,20 @@ def detectar_idiomas(texto: str) -> list[Idioma]:
     return idiomas
 
 
+_DATOS_CONTACTO = re.compile(r"\S+@\S+|https?://\S+|www\.\S+|\+?\d[\d\s().-]{7,}\d")
+
+
 def _lineas_con(texto: str, palabras: tuple[str, ...], limite: int = 3) -> list[str]:
+    """Líneas que contienen alguna palabra clave, sin datos de contacto.
+
+    Se omite la primera línea del CV porque casi siempre es el nombre de la persona.
+    """
+    lineas = [linea.strip() for linea in texto.splitlines() if linea.strip()][1:]
     encontradas = []
-    for linea in texto.splitlines():
-        if linea.strip() and any(p in texto_comparable(linea) for p in palabras):
-            encontradas.append(linea.strip()[:150])
+    for linea in lineas:
+        if any(p in texto_comparable(linea) for p in palabras):
+            limpia = _DATOS_CONTACTO.sub("[omitido]", linea)[:150]
+            encontradas.append(limpia)
     return encontradas[:limite]
 
 

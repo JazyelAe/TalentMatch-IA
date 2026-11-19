@@ -55,6 +55,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "analisis.context_processors.modo_demo",
             ],
         },
     },
@@ -94,6 +95,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # no se recibe y la vista responde que pesa demasiado (el límite de la app es 5 MB).
 FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler"]
 FILE_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
+
+# --- Logging ---
+# Los módulos registran solo metadatos técnicos (tipo de error, iteración, herramienta), nunca el texto del CV.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {"simple": {"format": "{asctime} {levelname} {name}: {message}", "style": "{"}},
+    "handlers": {"consola": {"class": "logging.StreamHandler", "formatter": "simple"}},
+    "loggers": {
+        "services": {"handlers": ["consola"], "level": "INFO"},
+        "analisis": {"handlers": ["consola"], "level": "INFO"},
+    },
+}
 
 # --- TalentMatch IA: LLM y agente ---
 LLM_PROVEEDOR = leer_texto("LLM_PROVEEDOR", "anthropic").lower()

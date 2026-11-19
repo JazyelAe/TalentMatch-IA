@@ -213,7 +213,7 @@
 - **Pruebas:** orden; paginación (11 análisis → 2 páginas); estado vacío.
 - **Commit:** `feat: historial de análisis`
 
-### [ ] T23 · Aviso de modo demo, errores y logging
+### [x] T23 · Aviso de modo demo, errores y logging
 - **Qué:** *context processor* con un aviso de "Modo demo" visible en todas las páginas cuando
   corresponde; aviso de privacidad del historial (R6); logging de errores sin datos del CV; páginas 404/500 propias.
 - **Terminado cuando:** sin key se ve el aviso; con key no; los logs no contienen texto del CV.

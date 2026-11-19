@@ -126,3 +126,16 @@ class TestPrompts:
     def test_sin_etiquetas_devuelve_todo(self):
         assert extraer_delimitado("cv", "solo texto") == "solo texto"
 
+
+
+def test_el_perfil_demo_no_guarda_nombre_ni_contacto():
+    cv = (
+        "Ana Lopez - Desarrolladora Python Jr\n"
+        "Desarrolladora backend en Startup X (ana@correo.com, +52 33 1234 5678)\n"
+        "Ingenieria en Sistemas, 2024"
+    )
+    perfil = perfil_heuristico(cv)
+    volcado = perfil.model_dump_json()
+    assert "Ana Lopez" not in volcado
+    assert "ana@correo.com" not in volcado and "1234" not in volcado
+    assert perfil.experiencia[0].puesto.startswith("Desarrolladora backend en Startup X")
