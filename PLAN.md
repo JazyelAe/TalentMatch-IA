@@ -161,7 +161,7 @@
 - **Pruebas:** el agente con `ProveedorDemo` devuelve `Recomendaciones` válidas; el respaldo produce top 5 ordenado y `resultado_parcial=True`.
 - **Commit:** `feat: respaldo determinista y guion del agente en modo demo`
 
-### [ ] T17 · Vacante pegada (HU-04)
+### [x] T17 · Vacante pegada (HU-04)
 - **Qué:** `services/vacante_externa.py`: `estructurar_vacante(texto, proveedor)` → `VacanteEstructurada`
   (+ versión demo heurística), que se evalúa con el mismo puntaje híbrido. Se pasa al agente como
   contexto adicional.

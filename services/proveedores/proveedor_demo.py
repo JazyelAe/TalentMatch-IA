@@ -8,8 +8,25 @@ import json
 import re
 
 from services.catalogo_habilidades import detectar_habilidades_blandas, detectar_habilidades_tecnicas, texto_comparable
-from services.esquemas import Educacion, EvaluacionExterna, EvaluacionVacante, Experiencia, Idioma, PerfilCV, Recomendaciones
-from services.llm import ErrorLLM, LlamadaHerramienta, MensajeAsistente, MensajeResultados, ProveedorLLM, RespuestaLLM
+from services.esquemas import (
+    Educacion,
+    EvaluacionExterna,
+    EvaluacionVacante,
+    Experiencia,
+    Idioma,
+    PerfilCV,
+    Recomendaciones,
+    VacanteEstructurada,
+)
+from services.llm import (
+    ErrorLLM,
+    LlamadaHerramienta,
+    MensajeAsistente,
+    MensajeResultados,
+    ProveedorLLM,
+    RespuestaInvalidaError,
+    RespuestaLLM,
+)
 from services.prompts import extraer_delimitado
 
 MAX_MATCHES_DEMO = 8
@@ -32,6 +49,8 @@ class ProveedorDemo(ProveedorLLM):
     def generar_estructurado(self, sistema, mensaje, esquema):
         if esquema is PerfilCV:
             return perfil_heuristico(extraer_delimitado("cv", mensaje))
+        if esquema is VacanteEstructurada:
+            return vacante_heuristica(extraer_delimitado("vacante", mensaje))
         raise ErrorLLM(f"El modo demo no sabe generar {esquema.__name__}.")
 
     def chat_con_herramientas(self, sistema, mensajes, herramientas):
@@ -128,6 +147,56 @@ def perfil_heuristico(texto_cv: str) -> PerfilCV:
         idiomas=detectar_idiomas(texto_cv),
         anios_experiencia=anios,
         nivel_estimado=nivel,
+    )
+
+
+# --- Vacante pegada (heurística) ---------------------------------------------------------------
+
+PALABRAS_DESEABLE = ("deseable", "plus", "valorable", "nice to have", "se valora")
+
+
+def _nivel_de_vacante(comparable: str, anios: float) -> str:
+    if any(p in comparable for p in ("trainee", "practicante", "becario", "pasante")):
+        return "trainee"
+    if any(p in comparable for p in ("senior", "semi senior", "semisenior", "mid", "sr.")) or anios >= 3:
+        return "mid"
+    return "jr"
+
+
+def _modalidad_de_vacante(comparable: str) -> str:
+    if "hibrid" in comparable:
+        return "hibrido"
+    if "remot" in comparable or "home office" in comparable:
+        return "remoto"
+    if "presencial" in comparable or "en oficina" in comparable:
+        return "presencial"
+    return "desconocida"
+
+
+def vacante_heuristica(texto: str) -> VacanteEstructurada:
+    """Estructura una vacante pegada con reglas simples (modo demo)."""
+    comparable = texto_comparable(texto)
+    requeridas: list[str] = []
+    deseables: list[str] = []
+    for linea in texto.splitlines():
+        destino = deseables if any(p in texto_comparable(linea) for p in PALABRAS_DESEABLE) else requeridas
+        destino += [h for h in detectar_habilidades_tecnicas(linea) if h not in requeridas + deseables]
+    if not requeridas:
+        requeridas, deseables = deseables, []
+    if not requeridas:
+        raise RespuestaInvalidaError(
+            "La vacante no tiene habilidades reconocibles.",
+            mensaje_usuario="No reconocimos habilidades técnicas en la vacante pegada. Revisa que incluya los requisitos.",
+        )
+    titulo = next((linea.strip() for linea in texto.splitlines() if linea.strip()), "Vacante pegada")[:120]
+    return VacanteEstructurada(
+        titulo=titulo,
+        empresa="",
+        nivel=_nivel_de_vacante(comparable, estimar_anios(texto)),
+        modalidad=_modalidad_de_vacante(comparable),
+        habilidades_requeridas=requeridas,
+        habilidades_deseables=deseables,
+        descripcion="Vacante pegada por el usuario (estructurada en modo demo).",
     )
 
 

@@ -7,7 +7,7 @@ from services.catalogo_habilidades import (
     detectar_habilidades_blandas,
     detectar_habilidades_tecnicas,
 )
-from services.esquemas import PerfilCV, VacanteEstructurada
+from services.esquemas import PerfilCV
 from services.habilidades import normalizar
 from services.llm import ErrorLLM
 from services.prompts import delimitar, extraer_delimitado
@@ -126,8 +126,3 @@ class TestPrompts:
     def test_sin_etiquetas_devuelve_todo(self):
         assert extraer_delimitado("cv", "solo texto") == "solo texto"
 
-
-def test_vacante_estructurada_aun_no_soportada_en_demo():
-    """La vacante pegada en modo demo llega en T17."""
-    with pytest.raises(ErrorLLM):
-        ProveedorDemo().generar_estructurado("s", "m", VacanteEstructurada)
