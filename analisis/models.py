@@ -80,3 +80,12 @@ class ResultadoMatch(models.Model):
 
     def __str__(self) -> str:
         return f"{self.titulo} · {self.puntaje_final:g}"
+
+    @property
+    def categoria(self) -> str:
+        """Para colorear el puntaje en la interfaz: alto (≥70), medio (≥45) o bajo."""
+        if self.puntaje_final >= 70:
+            return "alto"
+        if self.puntaje_final >= 45:
+            return "medio"
+        return "bajo"

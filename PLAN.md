@@ -199,7 +199,7 @@
 - **Pruebas:** (Django test client) éxito con PDF, DOCX y texto; ni archivo ni texto; ambos a la vez; extensión inválida; **no queda ningún archivo en disco ni en `MEDIA_ROOT`**; cada `ErrorLLM` → su mensaje.
 - **Commit:** `feat: formulario y vista para analizar un CV`
 
-### [ ] T21 · Página de resultados
+### [x] T21 · Página de resultados
 - **Qué:** `/analisis/<id>/`: perfil; tarjetas del top 5 con barra de puntaje, desglose,
   habilidades coincidentes/faltantes (en *chips*) y explicación; sección de vacante externa; brechas
   con mini plan; sugerencias y palabras ATS; aviso si es un resultado parcial.

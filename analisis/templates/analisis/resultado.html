@@ -1,11 +1,137 @@
 {% extends "base.html" %}
 
-{% block titulo %}Resultados · TalentMatch IA{% endblock %}
+{% block titulo %}Resultados del análisis #{{ analisis.pk }} · TalentMatch IA{% endblock %}
 
 {% block contenido %}
-{# Versión mínima; la página completa de resultados se construye en T21. #}
-<h1 class="text-2xl font-bold text-slate-900">Resultados del análisis #{{ analisis.pk }}</h1>
-<ol class="mt-4 list-decimal pl-6">
-  {% for r in analisis.resultados_catalogo %}<li>{{ r.titulo }} · {{ r.puntaje_final }}</li>{% endfor %}
-</ol>
+{% with perfil=analisis.perfil rec=analisis.recomendaciones externa=analisis.resultado_externo %}
+
+<header class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+  <div>
+    <p class="text-sm text-slate-500">Análisis #{{ analisis.pk }} · {{ analisis.creado|date:"j \d\e F \d\e Y, H:i" }}</p>
+    <h1 class="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">Tus resultados</h1>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <a href="{% url 'analisis:analizar' %}" class="rounded-lg bg-marca-600 px-4 py-2 text-sm font-semibold text-white hover:bg-marca-700">Analizar otro CV</a>
+  </div>
+</header>
+
+{% if analisis.resultado_parcial %}
+<div role="status" class="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+  <strong>Resultado parcial.</strong> El agente de IA no completó su evaluación, así que estas recomendaciones se calcularon
+  solo con la coincidencia de habilidades.
+</div>
+{% endif %}
+{% if analisis.es_demo %}
+<div role="status" class="mt-6 rounded-lg border border-sky-200 bg-sky-50 p-4 text-sm text-sky-900">
+  Este análisis se generó en <strong>modo demo</strong>: el perfil y las evaluaciones son simulaciones sin IA.
+</div>
+{% endif %}
+
+{# --- Perfil ------------------------------------------------------------------------------- #}
+<section class="mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" aria-labelledby="titulo-perfil">
+  <div class="flex flex-wrap items-center gap-3">
+    <h2 id="titulo-perfil" class="text-lg font-semibold text-slate-900">Tu perfil</h2>
+    <span class="rounded-full bg-marca-100 px-3 py-0.5 text-xs font-semibold text-marca-700 uppercase">{{ perfil.nivel_estimado }}</span>
+    <span class="text-sm text-slate-500">{{ perfil.anios_experiencia|floatformat:"-1" }} año(s) de experiencia</span>
+  </div>
+  <p class="mt-3 text-slate-700">{{ perfil.resumen }}</p>
+
+  <div class="mt-5 grid gap-5 sm:grid-cols-2">
+    <div>
+      <h3 class="text-sm font-semibold text-slate-800">Habilidades técnicas</h3>
+      <ul class="mt-2 flex flex-wrap gap-1.5">
+        {% for h in perfil.habilidades_tecnicas %}<li class="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700">{{ h }}</li>{% empty %}<li class="text-sm text-slate-500">No se detectaron.</li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-sm font-semibold text-slate-800">Habilidades blandas e idiomas</h3>
+      <ul class="mt-2 flex flex-wrap gap-1.5">
+        {% for h in perfil.habilidades_blandas %}<li class="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700">{{ h }}</li>{% endfor %}
+        {% for i in perfil.idiomas %}<li class="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700">{{ i.idioma }}{% if i.nivel %} · {{ i.nivel }}{% endif %}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {% if perfil.experiencia or perfil.educacion %}
+  <details class="mt-5 group">
+    <summary class="cursor-pointer text-sm font-semibold text-marca-700 hover:underline">Ver experiencia y educación</summary>
+    <div class="mt-3 grid gap-4 text-sm sm:grid-cols-2">
+      <ul class="space-y-2">
+        {% for e in perfil.experiencia %}
+        <li><p class="font-medium text-slate-800">{{ e.puesto }}{% if e.empresa %} · {{ e.empresa }}{% endif %}</p>
+          <p class="text-slate-500">{{ e.duracion }}{% if e.duracion and e.descripcion %} — {% endif %}{{ e.descripcion }}</p></li>
+        {% endfor %}
+      </ul>
+      <ul class="space-y-2">
+        {% for e in perfil.educacion %}
+        <li><p class="font-medium text-slate-800">{{ e.titulo }}</p><p class="text-slate-500">{{ e.institucion }} {{ e.anio }}</p></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </details>
+  {% endif %}
+</section>
+
+{# --- Top vacantes ------------------------------------------------------------------------ #}
+<section class="mt-10" aria-labelledby="titulo-top">
+  <h2 id="titulo-top" class="text-xl font-semibold text-slate-900">Tus mejores vacantes</h2>
+  <p class="mt-1 text-sm text-slate-500">Puntaje final = 60 % coincidencia de habilidades + 40 % evaluación de la IA.</p>
+  <ol class="mt-4 space-y-4">
+    {% for r in analisis.resultados_catalogo %}
+    <li>{% include "analisis/_tarjeta_resultado.html" with r=r posicion=forloop.counter %}</li>
+    {% empty %}
+    <li class="text-slate-500">No hubo vacantes para recomendar.</li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% if externa %}
+<section class="mt-10" aria-labelledby="titulo-externa">
+  <h2 id="titulo-externa" class="text-xl font-semibold text-slate-900">La vacante que pegaste</h2>
+  <div class="mt-4">{% include "analisis/_tarjeta_resultado.html" with r=externa %}</div>
+</section>
+{% endif %}
+
+{# --- Brechas ------------------------------------------------------------------------------ #}
+<section class="mt-10" aria-labelledby="titulo-brechas">
+  <h2 id="titulo-brechas" class="text-xl font-semibold text-slate-900">Qué te conviene aprender</h2>
+  <div class="mt-4 grid gap-4 sm:grid-cols-2">
+    {% for b in rec.brechas %}
+    <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="font-semibold text-slate-900">{{ b.habilidad }}</h3>
+        <span class="shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold
+          {% if b.prioridad == 'alta' %}bg-red-100 text-red-800{% elif b.prioridad == 'media' %}bg-amber-100 text-amber-800{% else %}bg-slate-100 text-slate-700{% endif %}">
+          Prioridad {{ b.prioridad }}
+        </span>
+      </div>
+      <p class="mt-1 text-sm text-slate-600">{{ b.motivo }}</p>
+      <ol class="mt-3 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+        {% for paso in b.pasos %}<li>{{ paso }}</li>{% endfor %}
+      </ol>
+      <p class="mt-3 text-xs font-medium text-slate-500">Tiempo estimado: {{ b.tiempo_estimado }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{# --- CV y ATS ------------------------------------------------------------------------------ #}
+<section class="mt-10 grid gap-4 sm:grid-cols-2" aria-label="Mejoras para tu CV">
+  <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <h2 class="text-lg font-semibold text-slate-900">Cómo mejorar tu CV</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
+      {% for s in rec.sugerencias_cv %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+  </div>
+  <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <h2 class="text-lg font-semibold text-slate-900">Palabras clave para filtros ATS</h2>
+    <p class="mt-1 text-sm text-slate-500">Las piden tus vacantes recomendadas y no aparecen en tu CV. Inclúyelas solo si de verdad las dominas.</p>
+    <ul class="mt-3 flex flex-wrap gap-1.5">
+      {% for p in rec.palabras_clave_ats %}<li class="rounded-md bg-marca-50 px-2 py-1 text-xs font-medium text-marca-700">{{ p }}</li>{% empty %}<li class="text-sm text-slate-500">Tu CV ya incluye las palabras clave principales.</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<p class="mt-10 text-xs text-slate-400">Generado con {{ analisis.proveedor }} · {{ analisis.modelo }}{% if analisis.iteraciones_agente %} · {{ analisis.iteraciones_agente }} iteración(es) del agente{% endif %}.</p>
+{% endwith %}
 {% endblock %}

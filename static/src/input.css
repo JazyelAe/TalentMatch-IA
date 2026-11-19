@@ -10,6 +10,7 @@
 @source "../../templates";
 @source "../../analisis/templates";
 @source "../../vacantes/templates";
+@source "../../analisis/forms.py"; /* clases de los widgets del formulario */
 
 /* Colores de marca: se usan como bg-marca-600, text-marca-700, etc. */
 @theme {
