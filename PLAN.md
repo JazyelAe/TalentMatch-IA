@@ -135,7 +135,7 @@
 
 ## Bloque E — Agente (F5, F6)
 
-### [ ] T14 · Herramientas del agente
+### [x] T14 · Herramientas del agente
 - **Qué:** `services/herramientas.py`: `buscar_vacantes(nivel?, modalidad?, habilidades?, limite≤10)`,
   `obtener_vacante(id)`, `calcular_match(vacante_id)` (usa el perfil del contexto) y la definición de
   `entregar_recomendaciones`. Incluye las definiciones con JSON Schema y un despachador que valida
