@@ -18,7 +18,7 @@
 
 ## Bloque A — Base del proyecto
 
-### [ ] T01 · Esqueleto de Django y configuración
+### [x] T01 · Esqueleto de Django y configuración
 - **Qué:** `venv`, `requirements.txt`, proyecto `config/`, apps `vacantes` y `analisis`, paquete
   `services/`, `settings.py` leyendo `.env` con python-dotenv, `.env.example`, `pytest.ini` con
   pytest-django, español (`LANGUAGE_CODE="es-mx"`, `TIME_ZONE="America/Mexico_City"`).
