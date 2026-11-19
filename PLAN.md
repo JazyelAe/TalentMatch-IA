@@ -78,7 +78,7 @@
 - **Pruebas:** 100 % de coincidencia, 0 %, parcial, sin deseables, mismo input → mismo output (HU-03), peso configurable.
 - **Commit:** `feat: puntaje determinista de coincidencia de habilidades`
 
-### [ ] T08 · Extracción de texto del CV
+### [x] T08 · Extracción de texto del CV
 - **Qué:** `services/extraccion.py`: `extraer_texto(archivo | texto)` para PDF (pypdf), DOCX
   (python-docx) y texto pegado, todo en memoria. Errores propios: `ArchivoInvalidoError`,
   `CVVacioError` (< 200 caracteres) y `CVDemasiadoLargoError` (> 30 000); límite de 5 MB.
