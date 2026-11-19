@@ -89,6 +89,12 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# --- Archivos subidos ---
+# Solo en memoria: el CV nunca se escribe en disco (SPEC F1). Un archivo mayor a este límite
+# no se recibe y la vista responde que pesa demasiado (el límite de la app es 5 MB).
+FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler"]
+FILE_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
+
 # --- TalentMatch IA: LLM y agente ---
 LLM_PROVEEDOR = leer_texto("LLM_PROVEEDOR", "anthropic").lower()
 LLM_MODELO = leer_texto("LLM_MODELO", "claude-haiku-5-5")

@@ -191,7 +191,7 @@
 
 ## Bloque G — Interfaz (HU-01…HU-08, HU-10)
 
-### [ ] T20 · Formulario y vista de análisis
+### [x] T20 · Formulario y vista de análisis
 - **Qué:** `AnalisisForm` (archivo **o** texto, vacante opcional y validación de exclusividad), vista
   `/analizar/` que llama al orquestador y redirige a los resultados; los errores se muestran en el
   formulario; indicador de carga al enviar (JS mínimo).

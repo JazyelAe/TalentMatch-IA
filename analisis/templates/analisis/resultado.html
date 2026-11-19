@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block titulo %}Resultados · TalentMatch IA{% endblock %}
+
+{% block contenido %}
+{# Versión mínima; la página completa de resultados se construye en T21. #}
+<h1 class="text-2xl font-bold text-slate-900">Resultados del análisis #{{ analisis.pk }}</h1>
+<ol class="mt-4 list-decimal pl-6">
+  {% for r in analisis.resultados_catalogo %}<li>{{ r.titulo }} · {{ r.puntaje_final }}</li>{% endfor %}
+</ol>
+{% endblock %}

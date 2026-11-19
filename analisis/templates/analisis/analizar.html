@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block titulo %}Analizar mi CV · TalentMatch IA{% endblock %}
+
+{% block contenido %}
+<div class="mx-auto max-w-2xl">
+  <h1 class="text-2xl font-bold text-slate-900 sm:text-3xl">Analiza tu CV</h1>
+  <p class="mt-2 text-slate-600">Sube tu CV o pega su texto. En menos de un minuto verás tus mejores vacantes y qué mejorar.</p>
+
+  {% if form.non_field_errors %}
+  <div role="alert" class="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">
+    {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+  </div>
+  {% endif %}
+
+  <form id="form-analisis" method="post" enctype="multipart/form-data" class="mt-6 space-y-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8" novalidate>
+    {% csrf_token %}
+
+    {% for campo in form %}
+      {% if forloop.counter == 2 %}
+      <div class="flex items-center gap-3 text-xs font-semibold tracking-wide text-slate-400 uppercase">
+        <span class="h-px flex-1 bg-slate-200"></span>o<span class="h-px flex-1 bg-slate-200"></span>
+      </div>
+      {% endif %}
+      {% if forloop.last %}<hr class="border-slate-200">{% endif %}
+      <div>
+        <label for="{{ campo.id_for_label }}" class="mb-2 block text-sm font-semibold text-slate-800">{{ campo.label }}</label>
+        {{ campo }}
+        {% if campo.help_text %}<p class="mt-1.5 text-xs text-slate-500">{{ campo.help_text }}</p>{% endif %}
+        {% for error in campo.errors %}<p class="mt-1.5 text-sm font-medium text-red-700">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+
+    <button id="boton-analizar" type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg bg-marca-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-marca-700 disabled:cursor-wait disabled:opacity-70">
+      <svg id="spinner" class="hidden size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
+        <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+      </svg>
+      <span id="texto-boton">Analizar mi CV</span>
+    </button>
+    <p id="aviso-espera" class="hidden text-center text-sm text-slate-500" aria-live="polite">
+      El agente está revisando vacantes. Puede tardar hasta un minuto; no cierres la página.
+    </p>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Indicador de carga: el análisis es síncrono y puede tardar, así que bloqueamos el botón
+  // para evitar envíos dobles y avisamos que hay que esperar.
+  document.getElementById("form-analisis").addEventListener("submit", function () {
+    const boton = document.getElementById("boton-analizar");
+    boton.disabled = true;
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("texto-boton").textContent = "Analizando…";
+    document.getElementById("aviso-espera").classList.remove("hidden");
+  });
+</script>
+{% endblock %}

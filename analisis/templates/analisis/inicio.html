@@ -15,8 +15,10 @@
     qué habilidades te faltan y cómo mejorar tu CV para pasar los filtros ATS.
   </p>
   <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-    {# El botón "Analizar mi CV" se agrega en T20, cuando exista la página /analizar/. #}
-    <a href="#como-funciona" class="w-full rounded-lg bg-marca-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-marca-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-600 sm:w-auto">
+    <a href="{% url 'analisis:analizar' %}" class="w-full rounded-lg bg-marca-600 px-6 py-3 font-semibold text-white shadow-sm hover:bg-marca-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-600 sm:w-auto">
+      Analizar mi CV
+    </a>
+    <a href="#como-funciona" class="w-full rounded-lg border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50 sm:w-auto">
       Ver cómo funciona
     </a>
   </div>
