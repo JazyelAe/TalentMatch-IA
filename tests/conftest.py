@@ -32,6 +32,12 @@ def sin_api_key(monkeypatch, settings):
 
 
 @pytest.fixture(autouse=True)
+def hasher_rapido(settings):
+    """En pruebas basta un hash rápido de contraseñas (PBKDF2 tarda ~2 s por usuario creado)."""
+    settings.PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
+
+
+@pytest.fixture(autouse=True)
 def bloquear_red(monkeypatch):
     """Bloquea conexiones y resolución DNS hacia hosts que no sean locales."""
     connect_original = socket.socket.connect

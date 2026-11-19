@@ -45,7 +45,7 @@
 
 ## Bloque B — Vacantes (HU-09)
 
-### [ ] T04 · Modelo Vacante y admin
+### [x] T04 · Modelo Vacante y admin
 - **Qué:** modelo `Vacante` (campos del SPEC §6, `choices` para modalidad y nivel, `JSONField` para
   habilidades), migración, `VacanteAdmin` con `list_filter` por nivel y modalidad, `search_fields` y `list_display`.
 - **Terminado cuando:** puedo crear, editar y borrar vacantes en `/admin/`.
