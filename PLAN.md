@@ -144,7 +144,7 @@
 - **Pruebas:** filtros de búsqueda; límite de resultados; id inexistente; argumentos inválidos; herramienta desconocida.
 - **Commit:** `feat: herramientas del agente para buscar, consultar y calcular match`
 
-### [ ] T15 · Ciclo del agente
+### [x] T15 · Ciclo del agente
 - **Qué:** `services/agente.py`: `ejecutar_agente(perfil, proveedor, vacante_externa=None)`. El ciclo
   llama al LLM, ejecuta las herramientas y devuelve los resultados; termina al recibir
   `entregar_recomendaciones` y valida con Pydantic. Corta a `AGENTE_MAX_ITERACIONES`, con 1 corrección
