@@ -173,7 +173,7 @@
 
 ## Bloque F — Persistencia y orquestación (F7)
 
-### [ ] T18 · Modelos Analisis y ResultadoMatch
+### [x] T18 · Modelos Analisis y ResultadoMatch
 - **Qué:** modelos del SPEC §6 (con copia de título y empresa, y `SET_NULL`), migración y registro en el admin (solo lectura).
 - **Terminado cuando:** se pueden guardar análisis con sus resultados; borrar una vacante no rompe el historial.
 - **Pruebas:** creación; orden por posición; borrar `Vacante` → el resultado conserva el título.
