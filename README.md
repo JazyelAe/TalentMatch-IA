@@ -5,6 +5,12 @@ Agente de IA que analiza tu CV, lo compara con vacantes de TI y te dice **a qué
 
 Hecho con **Python, Django, la API de Claude (Anthropic) y Tailwind CSS**. Se puede correr **gratis y sin API key** en modo demo.
 
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-5.2_LTS-092E20?logo=django&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)
+![Pruebas](https://img.shields.io/badge/pruebas-413_en_verde-2EA44F)
+![Cobertura](https://img.shields.io/badge/cobertura-98%25-2EA44F)
+
 ![Resultados de un análisis](docs/img/resultados.png)
 
 ---
@@ -18,8 +24,12 @@ Hecho con **Python, Django, la API de Claude (Anthropic) y Tailwind CSS**. Se pu
 5. [Cómo ejecutarlo en local](#cómo-ejecutarlo-en-local)
 6. [Modo demo](#modo-demo)
 7. [Pruebas](#pruebas)
-8. [Decisiones técnicas](#decisiones-técnicas)
-9. [Siguientes pasos](#siguientes-pasos)
+8. [Estructura del proyecto](#estructura-del-proyecto)
+9. [Decisiones técnicas](#decisiones-técnicas)
+10. [Cómo se construyó](#cómo-se-construyó)
+11. [Siguientes pasos](#siguientes-pasos)
+
+📘 ¿Quieres el detalle módulo por módulo? Lee la **[guía técnica](docs/ARQUITECTURA.md)**.
 
 ---
 
@@ -200,6 +210,21 @@ pytest --cov=services --cov=analisis --cov=vacantes
 - El LLM se simula con `ProveedorFalso` ([`tests/falsos.py`](tests/falsos.py)), que devuelve respuestas programadas, o excepciones para simular un 429 o un *timeout*. El proveedor de Anthropic se prueba con el cliente del SDK simulado.
 - Incluye una prueba de punta a punta en modo demo: cargar vacantes → subir un DOCX → ver resultados → historial.
 
+## Estructura del proyecto
+
+```
+config/        Configuración de Django (todo lo sensible viene de variables de entorno)
+vacantes/      App del catálogo: modelo Vacante, admin y comando de carga de ejemplos
+analisis/      App web: formulario, vistas, historial y plantillas
+services/      Lógica de negocio: extracción, matching, capa LLM, agente y orquestador
+templates/     Plantilla base y páginas de error
+static/        Tailwind (fuente en src/, CSS compilado en css/)
+tests/         413 pruebas con pytest
+docs/          Guía técnica y capturas
+```
+
+La explicación de cada archivo está en la [guía técnica](docs/ARQUITECTURA.md#1-mapa-del-código).
+
 ## Decisiones técnicas
 
 | Decisión | Por qué |
@@ -216,6 +241,20 @@ pytest --cov=services --cov=analisis --cov=vacantes
 | **Análisis síncrono** | Es más simple para un MVP. La interfaz muestra un indicador de carga y bloquea el doble envío. |
 
 Las especificaciones completas están en [SPEC.md](SPEC.md) y el plan tarea por tarea en [PLAN.md](PLAN.md).
+
+## Cómo se construyó
+
+El proyecto siguió un **desarrollo guiado por especificaciones**, en cuatro fases con aprobación entre cada una:
+
+1. **Especificación** ([SPEC.md](SPEC.md)): objetivo, alcance del MVP, historias de usuario con criterios de aceptación, modelo de datos, arquitectura y riesgos.
+2. **Plan** ([PLAN.md](PLAN.md)): 25 tareas pequeñas, cada una con su criterio de "terminado" y sus pruebas.
+3. **Implementación**: una tarea a la vez, con código, pruebas y un commit en formato [Conventional Commits](https://www.conventionalcommits.org/es/).
+4. **Documentación**: este README y la guía técnica.
+
+Herramientas: Python 3.13, Django 5.2, Pydantic 2, SDK `anthropic`, pypdf, python-docx, Tailwind CSS 4,
+pytest + pytest-django + pytest-cov, Git y GitHub. El desarrollo se hizo en *pair programming* con
+**Claude Code** (asistente de programación con IA): la IA propuso e implementó el código bajo la
+especificación y el plan aprobados, y cada fase se revisó antes de avanzar.
 
 ## Siguientes pasos
 

@@ -1,6 +1,6 @@
 # SPEC — TalentMatch IA (MVP)
 
-> Estado: **APROBADO** (2026-11-18)
+> Estado: **APROBADO** (2026-11-18) · **IMPLEMENTADO** (ver [PLAN.md](PLAN.md) y [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md))
 > Fecha: 2026-11-18
 
 ---
