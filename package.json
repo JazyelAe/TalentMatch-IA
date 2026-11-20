@@ -1,0 +1,13 @@
+{
+  "name": "talentmatch-ia",
+  "private": true,
+  "description": "Solo se usa para compilar Tailwind CSS. No hace falta para ejecutar la app.",
+  "scripts": {
+    "css:build": "tailwindcss -i ./static/src/input.css -o ./static/css/app.css --minify",
+    "css:watch": "tailwindcss -i ./static/src/input.css -o ./static/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.5",
+    "tailwindcss": "4.3.5"
+  }
+}

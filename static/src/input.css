@@ -1,0 +1,23 @@
+/*
+ * Fuente de estilos de TalentMatch IA (Tailwind CSS v4).
+ * Compilar:   npm run css:build   → genera static/css/app.css (minificado, se sube al repo)
+ * Desarrollo: npm run css:watch
+ */
+
+/* source(none): solo escanea las carpetas que listamos abajo, nada más. */
+@import "tailwindcss" source(none);
+
+@source "../../templates";
+@source "../../analisis/templates";
+@source "../../vacantes/templates";
+@source "../../analisis/forms.py"; /* clases de los widgets del formulario */
+
+/* Colores de marca: se usan como bg-marca-600, text-marca-700, etc. */
+@theme {
+  --color-marca-50: oklch(0.97 0.02 265);
+  --color-marca-100: oklch(0.93 0.04 265);
+  --color-marca-500: oklch(0.58 0.2 265);
+  --color-marca-600: oklch(0.51 0.22 265);
+  --color-marca-700: oklch(0.45 0.2 265);
+  --color-marca-900: oklch(0.29 0.12 265);
+}
